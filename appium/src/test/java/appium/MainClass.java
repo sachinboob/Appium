@@ -9,15 +9,17 @@ import java.io.File;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class MainClass {
-
-	@Test
-	public void mainTest() throws Exception {
-
+	
+	public AndroidDriver androidDriver = null;
+	
+	@Before
+	public void setUp()throws Exception{
 		String apkPath = "./src/main/resources/apk/ApiDemos-debug.apk";
 		File apkFile = new File(apkPath);
 
@@ -29,9 +31,13 @@ public class MainClass {
 		desiredCapabilities.setCapability(MobileCapabilityType.APP,
 				apkFile.getAbsolutePath());
 
-		AndroidDriver androidDriver = new AndroidDriver(new URL(
+		androidDriver = new AndroidDriver(new URL(
 				"http://127.0.0.1:4723/wd/hub/"), desiredCapabilities);
 		androidDriver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
+	}
+
+	@Test
+	public void mainTest() throws Exception {
 
 		// find element using xpath and click on it
 		androidDriver.findElement(
@@ -51,9 +57,6 @@ public class MainClass {
 
 		androidDriver.findElement(By.className("android.widget.EditText"))
 				.sendKeys("Boob");
-
-		// androidDriver.findElement(
-		// By.xpath(".//*[@resource-id='android:id/button1']")).click();
 
 		androidDriver.findElement(MobileBy.AndroidUIAutomator("text(\"OK\")"))
 				.click();
