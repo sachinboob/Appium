@@ -55,8 +55,7 @@ public class MainClass {
 		// androidDriver.findElement(
 		// By.xpath(".//*[@resource-id='android:id/button1']")).click();
 
-		androidDriver.findElement(
-				MobileBy.AndroidUIAutomator("text(\"OK\")"))
+		androidDriver.findElement(MobileBy.AndroidUIAutomator("text(\"OK\")"))
 				.click();
 	}
 }
