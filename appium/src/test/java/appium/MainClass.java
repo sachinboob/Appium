@@ -8,6 +8,7 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
+import io.appium.java_client.touch.offset.PointOption;
 
 import java.io.File;
 import java.net.URL;
@@ -117,4 +118,60 @@ public class MainClass {
 				.perform();
 
 	}
+
+	@Test
+	public void gestures_swipe() throws Exception {
+
+		TouchAction touchAction = new TouchAction(androidDriver);
+
+		// Views
+		touchAction
+				.tap(TapOptions
+						.tapOptions()
+						.withElement(
+								ElementOption.element(androidDriver
+										.findElementByXPath(".//android.widget.TextView[@text='Views']"))))
+				.perform();
+
+		// date widgets
+		touchAction
+				.tap(TapOptions
+						.tapOptions()
+						.withElement(
+								ElementOption.element(androidDriver
+										.findElementByXPath(".//android.widget.TextView[@text='Date Widgets']"))))
+				.perform();
+
+		// inline
+		touchAction
+				.tap(TapOptions
+						.tapOptions()
+						.withElement(
+								ElementOption.element(androidDriver
+										.findElementByXPath(".//android.widget.TextView[@text='2. Inline']"))))
+				.perform();
+
+		// tap on 3
+		touchAction
+				.tap(TapOptions
+						.tapOptions()
+						.withElement(
+								ElementOption.element(androidDriver
+										.findElementByXPath(".//*[@content-desc='3']"))))
+				.perform();
+
+		// swipet to left
+		touchAction
+				.press(PointOption
+						.point(androidDriver
+								.findElementByXPath(".//*[@content-desc='45']").getLocation().getX()
+								,
+								androidDriver
+										.findElementByXPath(
+												".//android.widget.TextView[@content-desc='45']")
+								.getLocation().getY()))
+				.perform();
+
+	}
+
 }
