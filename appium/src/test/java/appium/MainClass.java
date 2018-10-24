@@ -32,12 +32,12 @@ public class MainClass {
 		// desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,
 		// "Nexus_S_API_23");
 		desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,
-				"Nexus_4_API_27");
+				"Pixel_4_API_28");
 		desiredCapabilities.setCapability(MobileCapabilityType.APP,
 				apkFile.getAbsolutePath());
 
 		androidDriver = new AndroidDriver<AndroidElement>(new URL(
-				"http://127.0.0.1:4723/wd/hub/"), desiredCapabilities);
+				"http://0.0.0.0:4723/wd/hub/"), desiredCapabilities);
 		androidDriver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
 	}
 
@@ -160,7 +160,9 @@ public class MainClass {
 										.findElementByXPath(".//*[@content-desc='3']"))))
 				.perform();
 
-		// swipet to left
+		Thread.sleep(5000L);
+
+		// press on 45
 		touchAction
 				.press(PointOption
 						.point(androidDriver
@@ -168,7 +170,7 @@ public class MainClass {
 								,
 								androidDriver
 										.findElementByXPath(
-												".//android.widget.TextView[@content-desc='45']")
+												".//*[@content-desc='45']")
 								.getLocation().getY()))
 				.perform();
 
