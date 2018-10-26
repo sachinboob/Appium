@@ -15,10 +15,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -27,6 +24,17 @@ public class MainClass {
 	public AndroidDriver<AndroidElement> androidDriver;
 
 	@BeforeClass
+	public static void setUpAppium() throws Exception {
+		Process process = Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /k appium");
+
+		while(process.isAlive()) {
+
+		}
+		System.out.println("Exit value :- " + process.exitValue());
+		Thread.sleep(60000L);
+	}
+
+	@Before
 	public void setUp() throws Exception {
 		String apkPath = "./src/main/resources/apk/ApiDemos-debug.apk";
 		File apkFile = new File(apkPath);
@@ -179,8 +187,8 @@ public class MainClass {
 
 	}
 
-	@After
-    public void tearDown()throws Exception{
+	@AfterClass
+    public static void tearDown()throws Exception{
 
     }
 }
