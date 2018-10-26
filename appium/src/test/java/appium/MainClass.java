@@ -27,6 +27,10 @@ public class MainClass {
 
 	@Before
 	public void setUp() throws Exception {
+System.out.println("Starting appium server");
+		Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /k appium");
+		Thread.sleep(15000);
+
 		String apkPath = "./src/main/resources/apk/ApiDemos-debug.apk";
 		File apkFile = new File(apkPath);
 
