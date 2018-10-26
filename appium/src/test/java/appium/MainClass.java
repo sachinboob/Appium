@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -25,12 +26,8 @@ public class MainClass {
 
 	public AndroidDriver<AndroidElement> androidDriver;
 
-	@Before
+	@BeforeClass
 	public void setUp() throws Exception {
-System.out.println("Starting appium server");
-		Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /k appium");
-		Thread.sleep(15000);
-
 		String apkPath = "./src/main/resources/apk/ApiDemos-debug.apk";
 		File apkFile = new File(apkPath);
 
